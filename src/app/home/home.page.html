@@ -1,8 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <!-- Added logo -->
     <ion-title>
-      Blank
+      <img src="assets/logo.svg" id="logo" />
     </ion-title>
+    <ion-buttons end>
+      <!-- When button is clicked, method showSearch is called -->
+      <button ion-button icon-only (click)="showSearch()">
+        <!-- Button to add coins -->
+        <ion-icon name="add"></ion-icon>
+        Add Coins
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -15,6 +24,14 @@
 
   <div id="container">
     <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>
+      Start with Ionic
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://ionicframework.com/docs/components"
+        >UI Components</a
+      >
+    </p>
   </div>
 </ion-content>

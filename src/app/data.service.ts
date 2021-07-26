@@ -13,16 +13,23 @@ export class DataService {
   result: any;
 
   // Constructor w/ dependency injection 
-  constructor(public _http:HttpClient) { }
+  constructor(public _http: HttpClient) {
 
-// Method for getting cryptocurrency pricing info
-// CryptoCompare Multiple Symbols API (personal use)
+  }
 
-getCoins() {
-  // Getter for CryptoCompare API 
-  return this._http.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH&tsyms=USD')
-    .pipe(map(result => this.result = result));
+  // Method for getting cryptocurrency pricing info
+  // CryptoCompare Multiple Symbols API (personal use)
 
-}
+  // Getter for CryptoCompare Multiple Symbols Price API 
+
+  // Passing in arguments for user's preferred coins
+  getCoins(coins) {
+    let coinlist = ' ';
+    coinlist = coins.join();
+    // Coin list passed in 
+    return this._http.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + coinlist + '&tsyms=USD')
+      .pipe(map(result => this.result = result));
+
+  }
 
 }
