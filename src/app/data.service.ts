@@ -27,9 +27,33 @@ export class DataService {
     let coinlist = ' ';
     coinlist = coins.join();
     // Coin list passed in 
-    return this._http.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=' + coinlist + '&tsyms=USD')
+    return this._http.get('https://min-api.cryptocompare.com/data/pricemultifull?fsyms=' + coinlist + '&tsyms=USD')
+      .pipe(map(result => this.result = result));
+
+  }
+  // 
+  getCoin(coin) {
+    return this._http.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + coin + "&tsyms=USD")
+      .pipe(map(result => this.result = result));
+
+  }
+  // API call that gets historical data
+  getChart(coin) {
+
+    return this._http.get("https://min-api.cryptocompare.com/data/v2/histoday?fsym=" + coin + "&tsym=USD&limit=30&aggregate=1")
       .pipe(map(result => this.result = result));
 
   }
 
+  allCoins() {
+    //let headers = new HttpHeaders()
+    //.set("Access-Control-Allow-Origin","*");
+    // return this._http.get("https://min-api.cryptocompare.com/data/all/coinlist",{headers:headers})
+    return this._http.get("https://min-api.cryptocompare.com/data/all/coinlist")
+      .pipe(map(result => this.result = result));
+  }
 }
+
+
+
+

@@ -15,23 +15,25 @@ import { SearchPage } from './search/search.page';
 // Imported DataService provider
 import { DataService } from './data.service';
 
-// Imported Storage module
-// import { IonicStorageModule } from '@ionic/storage';
+// Imported CORDOVA PLUGINS: SplashScreen & StatusBar
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-// Imported SplashScreen & StatusBar
-//import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-//import { StatusBar } from '@ionic-native/status-bar/ngx';
-//import { IonicStorageModule } from '@ionic/storage'
+import { IonicStorageModule } from '@ionic/storage-angular'
+import { Storage } from '@ionic/storage-angular';
 
 
 @NgModule({
   // Added HomePage, SearchPage declarations
   declarations: [AppComponent],
+  //declarations: [AppComponent, Storage],
   // Added HomePage, SearchPage entry components
   entryComponents: [],
-  //imports: [BrowserModule, HttpClientModule, IonicStorageModule.forRoot(AppModule),IonicModule.forRoot(), AppRoutingModule],
-  imports: [BrowserModule, HttpClientModule,IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  //imports: [BrowserModule, HttpClientModule, IonicStorageModule.forRoot(AppModule),IonicModule.forRoot(), Storage, AppRoutingModule],
+  imports: [BrowserModule, HttpClientModule, IonicStorageModule.forRoot(), IonicModule.forRoot(), AppRoutingModule],
+  providers: [
+    StatusBar,
+    SplashScreen, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

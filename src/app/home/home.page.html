@@ -15,23 +15,87 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content padding>
+  <!-- Ion Grid element-->
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>
-      Start with Ionic
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components"
-        >UI Components</a
+  <ion-grid>
+    <ion-row>
+      <!-- Coin Name column -->
+      <ion-col>
+        <span id="colname">Coin Name</span>
+      </ion-col>
+      <ion-col>
+        <button
+          ion-button
+          icon-left
+          clear
+          (click)="refreshCoins()"
+          id="refresh"
+          color="light"
+        >
+          <ion-icon name="refresh"></ion-icon>
+          Refresh
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+<!-- Sliding Item -->
+  <ion-list *ngIf="coins">
+    <ion-item-sliding
+      *ngFor="let coin of objectKeys(coins); let i = index"
+      (ionDrag)="swiped(i)"
+    >
+      <ion-item
+        (click)="coinDetails(coin, i)"
+        no-lines
+        style="--ion-background-color: #1e4871"
       >
-    </p>
-  </div>
+        {{coin}}
+        <ion-note slot="end" color="bluetext">
+          {{coins[coin].USD | currency:'USD':true}}
+        </ion-note>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button (click)="removeCoin(coin)">
+          <ion-icon name="close" class="size"></ion-icon>
+        </button>
+      <!-- Sliding Item options-->
+      </ion-item-options>
+      <!-- Only showing details if detailToggle [i] is present-->
+      <ion-item class="details" *ngIf="detailToggle[i]" no-lines>
+       <!-- Ionic grid to create three columns -->
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+            <!-- -->
+              <span class="label">Market Cap</span>
+              <span class="answer">{{details.MKTCAP}}</span>
+            </ion-col>
+            <ion-col>
+              <span class="label"> Change (24 HR) </span>
+              <span class="answer"
+                >{{details.CHANGE24HR}} ({{details.CHANGEPCT24HR}}%)</span
+              >
+              <!-- -->
+            </ion-col>
+            <ion-col class="end">
+              <span class="label">High (24 HR)</span>
+              <span class="answer">{{details.HIGH24HOUR}}</span>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+          <!-- -->
+            <ion-col>
+              <br />
+              <span class="label">Price (30 days)</span>
+              <canvas id="canvas{{i}}">{{chart[i]}}</canvas>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>
