@@ -74,6 +74,21 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** ADDED THIS **/
+
+  /** bluetext **/
+  --ion-color-bluetext: #72C2F7;
+  --ion-color-bluetext-rgb: 114,194,247;
+  --ion-color-bluetext-contrast: #000000;
+  --ion-color-bluetext-contrast-rgb: 0,0,0;
+  --ion-color-bluetext-shade: #64abd9;
+  --ion-color-bluetext-tint: #80c8f8;
+
+  --ion-toolbar-background: #2273C5;
+  --ion-background-color:#19232C;
+
+  //$toolbar-background:#2273C5;
 }
 
 @media (prefers-color-scheme: dark) {
